@@ -11,7 +11,7 @@ public class GameServer {
     public static String quiz(String exp) {
         String res = "";
         
-        if (exp == "O") {
+        if (exp.equalsIgnoreCase("O")) {
         	res = "Correct";
         	score += 10;
         }
@@ -44,6 +44,8 @@ public class GameServer {
                 
                 if (inputMessage.equalsIgnoreCase("bye")) {
                     System.out.println("클라이언트에서 연결을 종료하였음");
+                    out.write("Total score:" + score + "\n");
+                    out.flush();
                     break; // "bye"를 받으면 연결 종료
                 }
                 
@@ -53,7 +55,6 @@ public class GameServer {
                 out.write(res + "\n"); //  결과 문자열 전송
                 out.flush();
             }
-            
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } finally {

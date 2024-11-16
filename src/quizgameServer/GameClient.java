@@ -21,12 +21,14 @@ public class GameClient {
                 if (outputMessage.equalsIgnoreCase("bye")) {
                     out.write(outputMessage + "\n"); // "bye" 문자열 전송
                     out.flush();
+                    String inputMessage = in.readLine(); // 서버로부터 최종 점수 수신
+                    System.out.println("총점: " + inputMessage);
                     break; // 사용자가 "bye"를 입력한 경우 서버로 전송 후 연결 종료
                 }
                 out.write(outputMessage + "\n"); // 키보드에서 읽은  문자열 전송
                 out.flush();
                 String inputMessage = in.readLine(); // 서버로부터  결과 수신
-                System.out.println("계산 결과: " + inputMessage);
+                System.out.println("결과: " + inputMessage);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
